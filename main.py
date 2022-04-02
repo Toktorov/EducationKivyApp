@@ -7,6 +7,7 @@ from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
 from kivy.core.window import Window
 
+
 class Education(App):
     def build(self):
         Window.clearcolor = (1, 1, 1, 1)
@@ -32,7 +33,7 @@ class Education(App):
                     multiline= False,
                     padding_y= (20,20),
                     size_hint= (1, 0.5),
-                    text = "Логин",
+                    hint_text = "Логин",
                     )
 
         self.window.add_widget(self.login)
@@ -43,7 +44,7 @@ class Education(App):
                     multiline= False,
                     padding_y= (20,20),
                     size_hint= (1, 0.5),
-                    text = "Пароль"
+                    hint_text = "Пароль"
                     )
 
         self.window.add_widget(self.password)
@@ -51,17 +52,35 @@ class Education(App):
         # виджет кнопки для входа
         self.button = Button(
                       text= "Войти",
-                      size_hint= (1,0.5),
+                      size_hint= (1,0.3),
                       bold= True,
                       )
         self.button.bind(on_press=self.check)
         self.window.add_widget(self.button)
 
+        #кнопка о регистрации
+
+        self.register = Button(
+            text = "Зарегистрироваться",
+            bold = True,
+            size_hint = (1, 0.3)
+        )
+
+        self.button.bind(on_press=RegisterPage)
+
+        self.window.add_widget(self.register)
+
+
         return self.window
+
+
 
     def check(self, instance):
         #Проверка логина и пароля
         self.error.text = "Неправильный пароль или пароль"
+
+class RegisterPage(App):
+    pass
 
 if __name__ == "__main__":
     Education().run()
